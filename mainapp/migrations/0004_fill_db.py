@@ -167,3 +167,4 @@ class Migration(migrations.Migration):
     dependencies = [("mainapp", "0003_contact")]
 
     operations = [migrations.RunPython(forwards_func, reverse_func)]
+    var = 0
