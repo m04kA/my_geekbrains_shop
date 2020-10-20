@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "/home/yaroslav/my_geekbrains_shop_new/venv/bin"
+    "python.pythonPath": "/home/yaroslav/my_geekbrains_shop_new/venv/bin",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "-l 120"
+    ],
 }
