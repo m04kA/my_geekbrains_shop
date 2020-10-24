@@ -11,10 +11,11 @@ from .models import Contact, Product, ProductCategory
 
 def main(request):
     title = "главная"
+    basket = get_basket(request.user)
 
     products = Product.objects.all()[:4]
 
-    content = {"title": title, "products": products, "media_url": settings.MEDIA_URL}
+    content = {"title": title, "products": products, "media_url": settings.MEDIA_URL, "basket": basket}
     return render(request, "mainapp/index.html", content)
 
 
@@ -74,4 +75,15 @@ def contact(request):
     locations = Contact.objects.all()
     content = {"title": title, "visit_date": visit_date, "locations": locations}
     return render(request, "mainapp/contact.html", content)
+
+def product(request, pk):
+    title = "продукты"
+    content = {
+        "title": title,
+        "links_menu": ProductCategory.objects.all(),
+        "product": get_object_or_404(Product, pk=pk),
+        "basket": get_basket(request.user),
+        "media_url": settings.MEDIA_URL,
+    }
+    return render(request, "mainapp/product.html", content)
     
