@@ -1,5 +1,5 @@
 {% extends 'mainapp/base.html' %}
-{% load staticfiles %}
+{% load staticfiles mail_to %}
 
 
 {% block menu %}
@@ -7,8 +7,8 @@
     <div class="header clearfix">
         {% include 'mainapp/includes/inc_menu.html' %}
     </div>
-	<h1>наши контакты</h1>
-	<p>сегодня: {{ visit_date|date:"l, j F, Y" }}</p>
+    <h1>наши контакты</h1>
+    <p>сегодня: {{ visit_date|date:"l, j F, Y" }}</p>
 </div>
 {% endblock %}
 
@@ -24,7 +24,7 @@
         </div>
         <div class="contacts">
             <h5>Email</h5>
-            <p>{{ location.email }}</p>
+            <p>{{ location.email|mail_to }}</p>
         </div>
         <div class="contacts">
             <h5>Адрес</h5>
