@@ -10,30 +10,31 @@
         {{ title|capfirst }}
         {% endblock title %}
     </title>
-    
+
     {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fa.all.min.css' %}">
     {% endblock css %}
 
-    
     {% block js %}
     {% endblock js %}
+
 </head>
 
 <body>
     <div class="container">
-        
+
         {% block menu %}
         {% endblock menu %}
-            
+
         <div class="content">
             {% block content %}
             {% endblock content %}
         </div>
-            
+
     </div>
-    
+
     {% block footer %}
     <div class="footer">
         <div class="clearfix">
@@ -52,7 +53,7 @@
                 </form>
             </div>
         </div>
-        <p class="small">&copy; GB 2020</p>
+        <p class="small">&copy; GB {% now "Y" %}</p>
         <div class="social">
             <a href="#" class="social1"></a>
             <a href="#" class="social2"></a>
@@ -61,9 +62,8 @@
         </div>
         <p class="small">Положения &amp; Условия / Конфиденциальность &amp; Cookies</p>
     </div>
+    {% endblock %}
 
-    {% endblock footer %}
-        
 </body>
-        
-        
+
+</html>
