@@ -90,10 +90,9 @@ def verify(request, email, activation_key):
             user.save()
             auth.login(request, user)
 
-            return render(request, "authapp/verification.html")
-        else:
-            print(f"error activation user: {user}")
-            return render(request, "authapp/verification.html")
+            return render(request, "authnapp/verification.html")
+        print(f"error activation user: {user}")
+        return render(request, "authnapp/verification.html")
 
     except Exception as e:
         print(f"error activation user : {e.args}")
