@@ -282,5 +282,5 @@ fabric.properties
 # best_shop --->
 
 tmp
-
+.secrets
 # <--- best_shop

@@ -18,26 +18,22 @@
     {% endblock %}
 
     {% block js %}
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     {% endblock %}
 
 </head>
 
 <body>
-    <div class="admin_container">
-        <div class="h2 text-center head">
-            Админка
-        </div>
-        {% block menu %}
-        <div class="admin_menu">
-            {% include 'adminapp/includes/inc_menu.html' %}
-        </div>
-        {% endblock %}
 
-
+    {% include 'adminapp/includes/inc_menu.html' %}
+    <div class="container">
         {% block content %}
         {% endblock %}
-
     </div>
+    </div>
+
 </body>
 
 </html>

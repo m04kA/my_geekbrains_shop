@@ -1,16 +1,20 @@
-{% extends 'authnapp/base.html' %}
-{% load staticfiles %}
-
+{% extends 'adminapp/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<form class="form-horizontal" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ update_form.as_p }}
-    <input class="form-control" type="submit" value="сохранить">
-</form>
-<button class="btn btn-round form-control last">
-    <a href="{% url 'admin:users' %}">
-        к списку пользователей
-    </a>
-</button>
+<div class="row justify-content-md-center">
+  <div class="col-7">
+    <p>
+    <form method="post">
+      {% csrf_token %}
+      {{ update_form|crispy }}
+      <button type="submit" class="btn btn-outline-primary btn-block">Сохранить</button>
+    </form>
+    </p>
+    <p>
+      <a href="{% url 'admin:users' %}" class="btn btn-outline-secondary btn-block" role="button" aria-pressed="true">К
+        списку пользователей</a>
+    </p>
+  </div>
+</div>
 {% endblock content %}

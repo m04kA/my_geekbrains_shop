@@ -17,5 +17,10 @@
         зарегистрироваться
     </a>
 </button>
+<button class="btn btn-round form-control">
+    <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+        Вход через <i class="fa fa-vk" aria-hidden="true"></i>
+    </a>
+</button>
 
 {% endblock content %}

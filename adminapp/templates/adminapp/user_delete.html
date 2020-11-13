@@ -1,21 +1,32 @@
 {% extends 'adminapp/base.html' %}
-{% load staticfiles %}
-
 
 {% block content %}
-<div class="user_delete">
-    Уверены, что хотите удалить {{ user_to_delete.username }} {% if user_to_delete.first_name %}
-    ({{ user_to_delete.first_name|title }}</b>
-    {% if user_to_delete.last_name %}
-    {{ user_to_delete.last_name|title }}
-    {% endif %})
-    {% endif %}?
+<p>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <h3>
+      Уверены, что хотите удалить {{ user_to_delete.username }} {% if user_to_delete.first_name %}
+      ({{ user_to_delete.first_name|title }}</b>
+      {% if user_to_delete.last_name %}
+      {{ user_to_delete.last_name|title }}
+      {% endif %})
+      {% endif %}?
+    </h3>
     <form action="{% url 'admin:user_delete' user_to_delete.pk %}" method="post">
-        {% csrf_token %}
-        <input class="btn btn-danger" type="submit" value="удалить">
+      {% csrf_token %}
+      <p>
+      <div class="row justify-content-around">
+        <div class="col-5">
+          <a href="{% url 'admin:users' %}" class="btn btn-outline-secondary btn-block"
+            role="button" aria-pressed="true">Отмена</a>
+        </div>
+        <div class="col-5">
+          <button type="submit" class="btn btn-outline-danger btn-block">Удалить</button>
+        </div>
+      </div>
+      </p>
     </form>
-    <button class="btn btn-success">
-        <a href="{% url 'admin:users' %}">отмена</a>
-    </button>
+  </div>
 </div>
+</p>
 {% endblock content %}
