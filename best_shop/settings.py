@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "basketapp",
     "adminapp",
     "social_django",
+    "ordersapp",
 ]
 
 # Django Crispy Forms
@@ -55,6 +56,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "best_shop.urls"
 
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -69,11 +71,11 @@ TEMPLATES = [
                 "mainapp.context_processors.basket",
                 "social_django.context_processors.backends",
                 "social_django.context_processors.login_redirect",
+                "django.template.context_processors.media",
             ],
         },
     },
 ]
-
 WSGI_APPLICATION = "best_shop.wsgi.application"
 
 
