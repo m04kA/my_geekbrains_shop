@@ -1,41 +1,68 @@
 {% extends 'adminapp/base.html' %}
 {% load staticfiles %}
 
-
 {% block content %}
-<div class="product_read">
-    <div class="product_name">
-        Продукт<strong>{{ object.category.name|title }} / {{ object.name|title }}</strong>
-    </div>
-    <img src="/media/{{ object.image|default:'products_images/default.jpg' }}" alt="{{ object.name }}">
-    <div class="summary">
-        <b>цена</b>
-        <p>{{ object.price }} руб</p>
-        <b>количество</b>
-        <p>{{ object.quantity }}</p>
-        <b>в каталоге</b>
-        <p>{% if object.is_active %}да{% else %}нет{% endif %}</p>
-        <p>
-            <button>
-                <a href={% url 'admin:product_update' object.pk %}>редактировать</a>
-            </button>
-        </p>
-        <p>
-            <button>
-                <a href={% url 'admin:product_delete' object.pk %}>удалить</a>
-            </button>
-        </p>
-        <p>
-            <button>
-                <a href={% url 'admin:products' object.category.pk %}>назад</a>
-            </button>
-        </p>
-    </div>
-    <div class="product_desc">
-        <b>краткая информация</b>
-        <p>{{ object.short_desc }}</p><br><br>
-        <b>подробная информация</b>
-        <p>{{ object.description }}</p>
-    </div>
+<p>
+<div class="row">
+  <div class="col-6">
+    <h3>Продукт <strong>{{ object.category.name|title }} | {{ object.name|title }}</strong></h3>
+  </div>
 </div>
+</p>
+<p>
+<div class="row">
+  <div class="col-9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Характеристика</th>
+          <th scope="col">Значение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Цена (руб.)</th>
+          <td>{{ object.price }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Количество</th>
+          <td>{{ object.quantity }}</td>
+        </tr>
+        <tr>
+          <th scope="row">В каталоге</th>
+          <td>{% if object.is_active %}да{% else %}нет{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">Краткая информация</th>
+          <td>{{ object.short_desc }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Подробная информация</th>
+          <td>{{ object.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-3">
+    <img src="/media/{{ object.image|default:'products_images/default.jpg' }}" alt="{{ object.name }}"
+      style="max-width: 100%;">
+  </div>
+</div>
+</p>
+<p>
+<div class="row justify-content-around">
+  <div class="col-4">
+    <a href="{% url 'admin:products' object.category.pk %}" class="btn btn-outline-primary" role="button"
+      aria-pressed="true">К списку товаров</a>
+  </div>
+  <div class="col-4">
+    <div class="btn-group col-12" role="group" aria-label="Basic example">
+      <a href="{% url 'admin:product_update' object.pk %}" class="btn btn-outline-secondary col-6" role="button"
+        aria-pressed="true">Редактировать</a>
+      <a href="{% url 'admin:product_delete' object.pk %}" class="btn btn-outline-danger col-6" role="button"
+        aria-pressed="true">Удалить</a>
+    </div>
+  </div>
+</div>
+</p>
 {% endblock content %}

@@ -108,6 +108,7 @@ class ProductCategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = ProductCategory
     template_name = "adminapp/category_delete.html"
     success_url = reverse_lazy("admin:categories")
+    foo = "BAR"
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()

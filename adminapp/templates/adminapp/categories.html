@@ -2,32 +2,38 @@
 {% load staticfiles %}
 
 {% block content %}
-<div class="categories_list">
-    <button class="new_category">
-        <a href={% url 'admin:category_create' %}>новая категория</a>
-    </button>
-
-    {% for object in objects %}
-    <div class="category_record {% if not object.is_active %}not_active{% endif %}">
-        <div class="category_name">
-            {{ object.name|title }}
-        </div>
-        <div class="category_actions">
-            <button>
-                <a href={% url 'admin:products' object.pk %}>товары категории</a>
-            </button>
-            <button>
-                <a href={% url 'admin:category_update' object.pk %}>редактировать</a>
-            </button>
-            <button>
-                <a href={% url 'admin:category_delete' object.pk %}>удалить</a>
-            </button>
-        </div>
-        <div class="category_desc">
-            {{ object.description|title }}
-        </div>
+<p>
+<div class="row justify-content-end">
+    <div class="col-2">
+        <a href="{% url 'admin:category_create' %}" class="btn btn-outline-secondary btn-sm" role="button"
+            aria-pressed="true"><i class="fa fa-plus" aria-hidden="true"></i> Добавить</a>
     </div>
-    {% endfor %}
-
 </div>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название категории</th>
+            <th scope="col">Товары категории</th>
+            <th scope="col">Описание</th>
+            <th scope="col" colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in objects %}
+        <tr id="{{ object.pk }}" {% if not object.is_active %}style="opacity: 30%;" {% endif %}>
+            <th scope="row">{{ object.pk }}</th>
+            <td>{{ object.name|title }}</td>
+            <td><a href="{% url 'admin:products' object.pk %}"><i class="fa fa-angle-right" aria-hidden="true"></i> К
+                    списку</a></td>
+            <td>{{ object.description|title }}</td>
+            <td><a href="{% url 'admin:category_update' object.pk %}"><i class="fa fa-pencil"
+                        aria-hidden="true"></i></a></td>
+            <td><a href="{% url 'admin:category_delete' object.pk %}"><i class="fa fa-trash-o"
+                        aria-hidden="true"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
