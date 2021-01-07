@@ -6,5 +6,5 @@ from ordersapp.apps import OrdersappConfig
 app_name = OrdersappConfig.name
 
 urlpatterns = [
-    path("", ordersapp.OrederListView, name="orders_list"),
+    path("", ordersapp.OrederListView.as_view(), name="orders_list"),
 ]
