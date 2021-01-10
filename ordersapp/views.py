@@ -21,7 +21,7 @@ class OrederListView(ListView):
 class OrederCreateView(CreateView):
     model = Order
     fields = []
-    success_url = reverse_lazy("ordersapp:orders_list")
+    success_url = reverse_lazy("ordersapp:orders_list")  # ordersapp:order_update
     template_name = "ordersapp/order_form.html"
 
     def get_context_data(self, **kwargs):
@@ -52,7 +52,7 @@ class OrederCreateView(CreateView):
             form.instance.user = self.request.user
             self.object = form.save()
             if orderitems.is_valid():
-                orderitems.instanse = self.object
+                orderitems.instance = self.object
                 orderitems.save()
         if self.object.get_total_cost() == 0:
             self.object.delete()
@@ -84,17 +84,20 @@ class OrederUpdateView(UpdateView):
         with transaction.atomic():
             self.object = form.save()
             if orderitems.is_valid():
-                orderitems.instanse = self.object
+                orderitems.instance = self.object
                 orderitems.save()
 
         return super().form_valid(form)
 
+
 class OrderDetailView(DetailView):
     model = Order
+
 
 class OrderDeleteView(DeleteView):
     model = Order
     success_url = reverse_lazy("ordersapp:orders_list")
+
 
 def order_forming_complete(requesr, pk):
     order = get_object_or_404(Order, pk=pk)
