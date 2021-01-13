@@ -21,7 +21,7 @@ class OrederListView(ListView):
 class OrederCreateView(CreateView):
     model = Order
     fields = []
-    success_url = reverse_lazy("ordersapp:orders_list")  # ordersapp:order_update
+    success_url = reverse_lazy("ordersapp:orders_list")
     template_name = "ordersapp/order_form.html"
 
     def get_context_data(self, **kwargs):
@@ -57,7 +57,8 @@ class OrederCreateView(CreateView):
         if self.object.get_total_cost() == 0:
             self.object.delete()
 
-        return super().form_valid(form)
+        super().form_valid(form)
+        return HttpResponseRedirect(reverse('ordersapp:order_update', args=[self.object.pk]))
 
 
 class OrederUpdateView(UpdateView):
@@ -87,7 +88,8 @@ class OrederUpdateView(UpdateView):
                 orderitems.instance = self.object
                 orderitems.save()
 
-        return super().form_valid(form)
+        super().form_valid(form)
+        return HttpResponseRedirect(reverse('ordersapp:order_update', args=[self.object.pk]))
 
 
 class OrderDetailView(DetailView):
