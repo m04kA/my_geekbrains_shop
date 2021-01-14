@@ -14,7 +14,10 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = "__all__"
 
+
 class OrderItemForm(forms.ModelForm):
+    price = forms.CharField(label='цена', required=False)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
