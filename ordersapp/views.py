@@ -61,6 +61,7 @@ class OrederCreateView(CreateView):
         if self.object.get_total_cost() == 0:
             self.object.delete()
 
+
         super().form_valid(form)
         return HttpResponseRedirect(reverse('ordersapp:order_update', args=[self.object.pk]))
 
